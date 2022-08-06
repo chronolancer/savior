@@ -1,10 +1,10 @@
 import cv2
-from brilho import aumentar, diminuir
+from brilho import *
 
-input('Aperte algo para começar > ')
+input('pode começar? ')
 
-cv2.namedWindow('a')
-video = cv2.VideoCapture(0)  # Configurar a câmera e afins
+cv2.namedWindow('a') # sim vai ficar uma puta janela aberta com a imagem da sua câmera
+video = cv2.VideoCapture(0)  # arrumar a câmera
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 cont_frame = 0
 brilho_baixo = False
@@ -15,7 +15,7 @@ while True:
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(cinza, 1.2, 5)
 
-    if cont_frame % 30 == 0:   # Checar os rostos de 60 em 60 frames
+    if cont_frame % 30 == 0:   # Checar os rostos de 30 em 30 frames
         print(cont_frame)
         if type(faces) is tuple:  # Se não houverem rostos
             if brilho_baixo == False:
